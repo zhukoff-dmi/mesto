@@ -1,0 +1,5 @@
+.profile__username {
+    display: flex;
+    align-items: baseline;
+    box-sizing: border-box;
+}
