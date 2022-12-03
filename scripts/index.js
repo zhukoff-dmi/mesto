@@ -16,11 +16,11 @@ let profileName = document.querySelector('.profile__name');
 let profileDescription = document.querySelector('.profile__description');
 
 //.Открытие popup
-editButton.addEventListener('click', function() {
+function popupOpen() {
     popup.classList.add('popup_opened');
     nameInput.value = profileName.textContent;
     jobInput.value = profileDescription.textContent;
-})
+}
 
 //.Закрытие popup
 function popupClose() {
@@ -36,7 +36,7 @@ function handleFormSubmit (evt) {
 }
 
 formElement.addEventListener('submit', handleFormSubmit);
-editButton.addEventListener('click', editButton);
+editButton.addEventListener('click', popupOpen);
 closeButton.addEventListener('click', popupClose);
 
 

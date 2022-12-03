@@ -1,8 +1,8 @@
 /* fonts */
-@import url(../vender/fonts.css);
+@import url(../vendor/fonts.css);
 
 /* normalize */
-@import url(../vender/normalize.css);
+@import url(../vendor/normalize.css);
 
 /* page */
 @import url(../blocks/page/page.css);
