@@ -27,7 +27,7 @@ function popupClose() {
     popup.classList.remove('popup_opened');
 }
 
-//.Оправка формыБ закрытие popup
+//.Оправка формы закрытие popup
 function handleFormSubmit (evt) {
     evt.preventDefault();
     profileName.textContent = nameInput.value;
@@ -38,6 +38,21 @@ function handleFormSubmit (evt) {
 formElement.addEventListener('submit', handleFormSubmit);
 editButton.addEventListener('click', popupOpen);
 closeButton.addEventListener('click', popupClose);
+
+//Активная кнопка лайк
+const likeButton = document.querySelector('.card__like');
+
+function likeButtonActive() {
+    likeButton.classList.toggle('.card__like_active');
+}
+
+likeButton.addEventListener('click', likeButtonActive);
+
+console.log(likeButton);
+
+
+
+
 
 
 

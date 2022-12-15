@@ -30,6 +30,7 @@
 @import url(../blocks/card/__signature/card__signature.css);
 @import url(../blocks/card/__title/card__title.css);
 @import url(../blocks/card/__like/crad__like.css);
+@import url(../blocks/card/__delete-button/card__delete-button.css);
 
 /* footer */
 @import url(../blocks/footer/footer.css);
