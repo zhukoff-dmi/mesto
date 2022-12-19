@@ -10,9 +10,11 @@
 </head>
 
 <body class="page">
+
     <header class="header">
         <div class="header__logo"></div>
     </header>
+
     <main>
         <section class="profile">
             <img class="profile__image" src="./images/Profile-image.jpg" alt="Фото профиля">
@@ -26,77 +28,62 @@
             <button class="profile__add-button" type="button"></button>
         </section>
         <section class="cards">
-            <div class="card">
-                <img class="card__photo" src="./images/Karachaevsk.jpg" alt="Фото Сентинский храм, Теберда">
-                <div class="card__signature">
-                    <h2 class="card__title">Карачаевск</h2>
-                    <button class="card__like card__like_active" type="button"></button>
-                    <button class="card__delete-button" type="button"></button>
-                </div>
-            </div>
-            <div class="card">
-                <img class="card__photo" src="./images/Elbrus.jpg" alt="Фото пустыни на закате">
-                <div class="card__signature">
-                    <h2 class="card__title">Гора Эльбрус</h2>
-                    <button class="card__like card__like_active" type="button"></button>
-                </div>
-            </div>
-            <div class="card">
-                <img class="card__photo" src="./images/Dombai.jpg" alt="Гора Эльбрус в тумане">
-                <div class="card__signature">
-                    <h2 class="card__title">Домбай</h2>
-                    <button class="card__like card__like_active" type="button"></button>
-                </div>
-            </div>
-            <div class="card">
-                <img class="card__photo" src="./images/Elbrus.jpg" alt="Фото пустыни на закате">
-                <div class="card__signature">
-                    <h2 class="card__title">Гора Эльбрус</h2>
-                    <button class="card__like card__like_active" type="button"></button>
-                </div>
-            </div>
-            <div class="card">
-                <img class="card__photo" src="./images/Dombai.jpg" alt="Гора Эльбрус в тумане">
-                <div class="card__signature">
-                    <h2 class="card__title">Домбай</h2>
-                    <button class="card__like card__like_active" type="button"></button>
-                </div>
-            </div>
-            <div class="card">
-                <img class="card__photo" src="./images/Karachaevsk.jpg" alt="Фото Сентинский храм, Теберда">
-                <div class="card__signature">
-                    <h2 class="card__title">Карачаево-Черкесия</h2>
-                    <button class="card__like card__like_active" type="button"></button>
-                </div>
-            </div>
         </section>
     </main>
+
     <footer class="footer">
         <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
     </footer>
-    <div class="popup">
+
+    <!--Шаблон для картоек-->
+    <template id="template-card">
+        <article class="card">
+            <img class="card__photo" src="#" alt="">
+            <div class="card__signature">
+                <h2 class="card__title"></h2>
+                <button class="card__like" type="button"></button>
+            </div>
+            <button class="card__delete-button" type="button"></button>
+        </article>
+    </template>
+
+    <!--Попап редактирования профиля-->
+    <div class="popup popup_edit-profile">
         <div class="popup__container">
             <button class="popup__close-button" type="button"></button>
             <h2 class="popup__title">Редактировать профиль</h2>
-            <form class="popup__form" name="edit">
+            <form class="popup__form popup__form-profile" name="edit">
                 <input class="popup__input popup__input_type_name" name="type-name" type="text" placeholder="Имя">
                 <input class="popup__input popup__input_type_job" name="type-job" type="text" placeholder="О себе">
                 <button class="popup__save-button" type="submit">Сохранить</button>
             </form>
         </div>
     </div>
-    <div class="popup">
+
+    <!--Попап редактирования карточки-->
+    <div class="popup popup_add-card">
         <div class="popup__container">
             <button class="popup__close-button" type="button"></button>
             <h2 class="popup__title">Новое место</h2>
-            <form class="popup__form" name="edit">
-                <input class="popup__input popup__input_type_name" name="type-name" type="text" placeholder="Название">
-                <input class="popup__input popup__input_type_job" name="type-job" type="text"
+            <form class="popup__form popup__form-card" name="edit">
+                <input class="popup__input popup__input_type_title" name="type-title" type="text"
+                    placeholder="Название">
+                <input class="popup__input popup__input_type_link" name="type-link" type="text"
                     placeholder="Ссылка на картинку">
                 <button class="popup__save-button" type="submit">Создать</button>
             </form>
         </div>
     </div>
+
+    <!--Попап картинки-->
+    <div class="popup popup__image">
+        <figure class="popup__image-container">
+            <button class="popup__close-button popup__image-close-button" type="button"></button>
+            <img class="popup__image-place" src="#" alt="">
+            <figcaption class="popup__image-caption">Байкал</figcaption>
+        </figure>
+    </div>
+    
     <script src="./scripts/index.js"></script>
 </body>
 
