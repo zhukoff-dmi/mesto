@@ -76,7 +76,7 @@ cardInfo.reverse().forEach((item) => {
 });
 
 //popup картинки
-const popupImage = document.querySelector('.popup__image');
+const popupImage = document.querySelector('.popup_image');
 const imagePlace = document.querySelector('.popup__image-place');
 const imageCaption = document.querySelector('.popup__image-caption');
 
