@@ -32,13 +32,16 @@ const cardInfo = initialCards.map(function (item) {
     };
 });
 
+// Тимплейт карточки
+const templateCard = document.querySelector('#template-card').content;
+const elementCard = templateCard.querySelector('.card').cloneNode(true);
+
 const createCard = (cardLink, cardName) => {
-    const templateCard = document.querySelector('#template-card').content;
     const elementCard = templateCard.querySelector('.card').cloneNode(true);
 
     //Атрибуты карточки
-    imageCard = elementCard.querySelector('.card__photo');
-    titleCard = elementCard.querySelector('.card__title');
+    const imageCard = elementCard.querySelector('.card__photo');
+    const titleCard = elementCard.querySelector('.card__title');
 
     imageCard.src = cardLink;
     imageCard.alt = cardName;
@@ -56,7 +59,7 @@ const createCard = (cardLink, cardName) => {
 
     //открытие картинки на весь экран
     elementCard.querySelector('.card__photo').addEventListener('click', function () {
-        popupOpen(popupImage);
+        openPopup(popupImage);
 
         imagePlace.src = cardLink;
         imagePlace.alt = cardName;
@@ -88,11 +91,11 @@ const linkCardInput = popupAddFormCard.querySelector('.popup__input_type_link');
 const formCardElement = popupAddFormCard.querySelector('.popup__form-card');
 
 profileAddButtonCard.addEventListener('click', function () {
-    popupOpen(popupAddFormCard);
+    openPopup(popupAddFormCard);
 });
 
 //Отправка формы закрытия popup карточки
-function cardFormSumbit(event) {
+function handleCardFormSubmit(event) {
     event.preventDefault();
 
     const cardLink = linkCardInput.value;
@@ -100,58 +103,57 @@ function cardFormSumbit(event) {
 
     addCard(createCard(cardLink, cardName));
 
-    popupClose(popupAddFormCard);
+    closePopup(popupAddFormCard);
 
-    linkCardInput.value = "";
-    titleCardInput.value = "";
+    event.target.reset();
 };
 
-formCardElement.addEventListener('submit', cardFormSumbit);
+formCardElement.addEventListener('submit', handleCardFormSubmit);
 
 
 const profileEditButton = document.querySelector('.profile__edit-button');
 const popupEditProfile = document.querySelector('.popup_edit-profile');
 const closeButton = document.querySelectorAll('.popup__close-button');
-let formElement = document.querySelector('.popup__form-profile');
-let nameProfileInput = formElement.querySelector('.popup__input_type_name');
-let jobProfileInput = formElement.querySelector('.popup__input_type_job');
-let profileName = document.querySelector('.profile__name');
-let profileDescription = document.querySelector('.profile__description');
+const formElement = document.querySelector('.popup__form-profile');
+const nameProfileInput = formElement.querySelector('.popup__input_type_name');
+const jobProfileInput = formElement.querySelector('.popup__input_type_job');
+const profileName = document.querySelector('.profile__name');
+const profileDescription = document.querySelector('.profile__description');
 
 //.Открытие popup 
-function popupOpen(item) {
+function openPopup(item) {
     item.classList.add('popup_opened');
 };
 
 //.Закрытие popup
-function popupClose(item) {
+function closePopup(item) {
     item.classList.remove('popup_opened');
 };
 
 closeButton.forEach(function (btn) {
     btn.addEventListener('click', function () {
         const popup = btn.closest('.popup');
-        popupClose(popup);
+        closePopup(popup);
     });
 });
 
 //popup профиля 
 profileEditButton.addEventListener('click', function () {
-    popupOpen(popupEditProfile);
+    openPopup(popupEditProfile);
 
     nameProfileInput.value = profileName.textContent;
     jobProfileInput.value = profileDescription.textContent;
 });
 
 //Оправка формы закрытие popup профиля
-function profileFormSubmit(evt) {
+function handleProfileFormSubmit(evt) {
     evt.preventDefault();
     profileName.textContent = nameProfileInput.value;
     profileDescription.textContent = jobProfileInput.value;
-    popupClose(popupEditProfile);
+    closePopup(popupEditProfile);
 }
 
-formElement.addEventListener('submit', profileFormSubmit);
+formElement.addEventListener('submit', handleProfileFormSubmit);
 
 
 
