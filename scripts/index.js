@@ -1,3 +1,13 @@
+const validationConfig = {
+    formSelector: '.popup__form',
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__save-button',
+    inactiveButtonClass: 'popup__save-button_invalid',
+    inputErrorClass: 'popup__input-error',
+    errorClass: 'popup__input-error_visible',
+    typeError : 'popup__inputs_type_error',
+  }; 
+
 const initialCards = [
     {
         name: 'Архыз',
@@ -113,7 +123,7 @@ formCardElement.addEventListener('submit', handleCardFormSubmit);
 
 const profileEditButton = document.querySelector('.profile__edit-button');
 const popupEditProfile = document.querySelector('.popup_edit-profile');
-const closeButton = document.querySelectorAll('.popup__close-button');
+const closeButtons = document.querySelectorAll('.popup__close-button');
 const formElement = document.querySelector('.popup__form-profile');
 const nameProfileInput = formElement.querySelector('.popup__input_type_name');
 const jobProfileInput = formElement.querySelector('.popup__input_type_job');
@@ -130,7 +140,7 @@ function closePopup(item) {
     item.classList.remove('popup_opened');
 };
 
-closeButton.forEach(function (btn) {
+closeButtons.forEach(function (btn) {
     btn.addEventListener('click', function () {
         const popup = btn.closest('.popup');
         closePopup(popup);
@@ -156,6 +166,7 @@ function handleProfileFormSubmit(evt) {
 formElement.addEventListener('submit', handleProfileFormSubmit);
 
 
+enableValidation(validationConfig);
 
 
 
