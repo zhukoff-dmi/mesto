@@ -37,10 +37,10 @@ function toggleButtonState(inputList, buttonElement, config) {
 };
  
 function setEventListener(formElement, config) {
-    const inputList = Array.from(document.querySelectorAll(config.inputSelector));
+    const inputList = Array.from(formElement.querySelectorAll(config.inputSelector));
     const buttonElement = formElement.querySelector(config.submitButtonSelector);
 
-    toggleButtonState(inputList, buttonElement, config)
+    toggleButtonState(inputList, buttonElement, config);
 
     inputList.forEach((inputElement) => {
         inputElement.addEventListener('input', () => {
@@ -48,7 +48,7 @@ function setEventListener(formElement, config) {
             toggleButtonState(inputList, buttonElement, config);
         });
     });
-};
+}; 
 
 function enableValidation(config) {
     const formList = Array.from(document.querySelectorAll(config.formSelector));
