@@ -17,4 +17,4 @@
 * Добавить возможность добалять фото 
 * Редактировать подпись к фото 
 ------
-## https://zhukoff-dmi.github.io/mesto/
+## [Ссылка на проект](https://zhukoff-dmi.github.io/mesto/)
