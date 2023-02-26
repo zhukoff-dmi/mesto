@@ -17,14 +17,6 @@ class Card {
         return elementCard;
     }
 
-    // _setData(){
-    //     const titleCard = this._newCard.querySelector('.card__title');
-    //     titleCard.textContent = this._title;
-    //     const imageCard = this._newCard.elementCard.querySelector('.card__photo');
-    //     imageCard.src = this._link;
-    //     imageCard.alt = this._title;
-    // }
-
     //удаление карточки
     _deleteCard() {
         this._element.remove();
@@ -37,7 +29,7 @@ class Card {
     }
 
     //попап карточки
-    _openImageButton() {
+    _handleCardClick() {
         this._imageOpenPopup(this._title, this._link);
     }
 
@@ -45,7 +37,7 @@ class Card {
     _setEventListeners() {
         this._deleteCardButton.addEventListener('click', () => {this._deleteCard()});
         this._likeCardButton.addEventListener('click', () => {this._likeCard()});
-        this._imageCard.addEventListener('click', () => {this._openImageButton()});
+        this._imageCard.addEventListener('click', () => {this._handleCardClick()});
     }
 
     //создание карточки
