@@ -6,6 +6,7 @@ class PopupWithForm extends Popup {
         this._handleFormSubmit = handleFormSubmit
         this._popupForm = this._popup.querySelector('.popup__form');
         this._inputList = this._popupForm.querySelectorAll('.popup__input');
+        this._button = this._popupForm.querySelector('.popup__save-button');
     }
 
     _getInputValues() {
@@ -19,6 +20,14 @@ class PopupWithForm extends Popup {
     close() {
         super.close();
         this._popupForm.reset();
+    }
+
+    handleLoading(isLoading, massage) {
+        if (isLoading) {
+            this._button.textContent = `${massage}`;
+        } else {
+            this._button.textContent = `${massage}`;
+        }
     }
 
     setInputValues(data) {

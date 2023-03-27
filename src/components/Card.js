@@ -1,91 +1,84 @@
 class Card {
-    constructor(item, templateCard, imageOpenPopup, userId, handleLikeCard, handleDeleteCard) {
-        this._title = item.name;
-        this._link = item.link;
-        this._cardId = item._id;
-        this._ownerId = item.owner._id;
-        this._likes = item.likes;
+    constructor(dataCard, userId, imageOpenPopup, deleteCardPopupClick, handleLikeCard) {
+        this._likes = dataCard.likes;
+        this._dataCard = dataCard;
+        this.id = dataCard._id;
+        this._cardId = dataCard.owner._id;
         this._userId = userId;
 
-        this._templateCard = templateCard;
-        this._imageOpenPopup = imageOpenPopup;
         this._handleLikeCard = handleLikeCard;
-        this._handleDeleteCard =handleDeleteCard;
+        this._imageOpenPopup = imageOpenPopup;
+        this._deleteCardPopup = deleteCardPopupClick;
+        this._content = document.querySelector('#template-card').content
+            .querySelector('.card');
     }
 
     //клонируем содержимое
     _getTeamplate() {
-        const elementCard = document 
-        .querySelector(this._templateCard).content
-        .querySelector('.card')
-        .cloneNode(true);
-
+        const elementCard = this._content.cloneNode(true);
         return elementCard;
     }
 
     //удаление карточки
-    _deleteCard() {
+    deleteCardPopup() {
         this._element.remove();
         this._element = null;
     }
 
-    //лайк
-    likeCard() {
-        this._likeCardButton.classList.toggle('card__like_active');
-    }
-
-    _isLiked() {
-        return this._likes.find(user =>{user._id === this._userId});
-    }
-
-    _showLikeStatus() {
-        if(this._isLiked()) {
-            this._likeCardButton.classList.add('card__like_active');
+    //добавление кнопки удаления нашим карточкам
+    _showDeleteButton() {
+        if(this._cardId === this._userId) {
+            this._deleteCardButton.classList.add('card__delete-button_active');
         }
     }
 
-    solidLikeStatus(likes) {
-        this._likes = likes
+    //лайк
+    _toggleLikeCard = () => {
+        if (this.isLiked()) {
+            this._handleLikeCard();
+        }
     }
 
-    showLikeCount(count) {
-        this._likeCount.textContent = count;
+    handleLikeCard() {
+        this._likeCardButton.classList.toggle('card__like_active');
     }
 
-    //попап карточки
-    _handleCardClick() {
-        this._imageOpenPopup(this._title, this._link);
+    isLiked() {
+        return this._likes.some((like) => like._id === this._userId); 
     }
+
+    setLikesAmount(likes) {
+        this._likes = likes;
+        this._likeCount.textContent = this._likes.length;
+    }
+
 
     //слушатели карточки
     _setEventListeners() {
-        this._deleteCardButton.addEventListener('click', () => {this._handleDeleteCard(this, this._cardId)});
+        this._deleteCardButton.addEventListener('click', () =>  this._deleteCardPopup(this) );
 
-        this._likeCardButton.addEventListener('click', () => {this._handleLikeCard(this, this._isLiked(), this._cardId)});
+        this._likeCardButton.addEventListener('click', () => this._handleLikeCard(this));
 
-        this._imageCard.addEventListener('click', () => {this._handleCardClick()});
+        this._imageCard.addEventListener('click', () =>  this._imageOpenPopup(this._dataCard));
     }
+
 
     //создание карточки
     generateCard() {
         this._element = this._getTeamplate();
-        
-        this._element.querySelector('.card__title').textContent = this._title;
-        
+
+        this._nameCard = this._element.querySelector('.card__title');
         this._imageCard = this._element.querySelector('.card__photo');
-        this._imageCard.src = this._link;
-        this._imageCard.alt = this._title;
-        
         this._likeCardButton = this._element.querySelector('.card__like');
         this._deleteCardButton = this._element.querySelector('.card__delete-button');
-        this._likeCount = this>this._element.querySelector('.card__like-number');
+        this._likeCount = this._element.querySelector('.card__like-number');
+        this._showDeleteButton();
 
-        this._showLikeCount(this._likes.length);
-        this._showLikeStatus();
-
-        if(this._userId !== this._ownerId) {
-            this._deleteCardButton.remove();
-        }
+        this._nameCard.textContent = this._dataCard.name;
+        this._imageCard.src = this._dataCard.link;
+        this._imageCard.alt = this._dataCard.name;
+        this._likeCount.textContent = this._dataCard.likes.length;
+        this._toggleLikeCard();
 
         this._setEventListeners();
 
