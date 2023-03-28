@@ -124,7 +124,7 @@ popupFormAvatar.setEventListeners();
 
 //Отправка формы карточки
 function handleCardFormSubmitAdd(dataCard) {
-    popupAddFormCard.handleLoading(true);
+    popupAddFormCard.handleLoading(true)
     api.addNewCard(dataCard)
         .then(res => {
             renderCard(res);
@@ -140,6 +140,7 @@ function handleCardFormSubmitAdd(dataCard) {
 
 //Отправка формы профиля
 function handleProfileFormSubmitEdit(inputData) {
+    popupEditFormProfile.handleLoading(true)
     api.updateUserData(inputData)
         .then((data) => {
             userInfo.setUserInfo(data);
@@ -149,7 +150,7 @@ function handleProfileFormSubmitEdit(inputData) {
             console.log(err);
         })
         .finally(() => {
-            popupEditFormProfile.handleLoading(false, 'Создать');
+            popupEditFormProfile.handleLoading(false);
         });
 }
 
@@ -165,7 +166,7 @@ function handleAvatarFormSubmit(avatarInfo) {
             console.log(err);
         })
         .finally(() => {
-            popupFormAvatar.handleLoading(false, 'Сохранить');
+            popupFormAvatar.handleLoading(false);
         });
 }
 

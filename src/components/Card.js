@@ -35,7 +35,7 @@ class Card {
     //лайк
     _toggleLikeCard = () => {
         if (this.isLiked()) {
-            this._handleLikeCard();
+            this.handleLikeCard();
         }
     }
 
